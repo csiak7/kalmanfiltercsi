@@ -3,7 +3,8 @@
 #include "packets.h"
 
 using namespace avionics;
-//step, acceleration noise, gps noise!!
+
+#step, acceleration noise, gps noise!!!
 
 const float dt = 0.1;
 const float accel_noise = 0.1;
@@ -23,7 +24,7 @@ struct KalmanFilter {
         memset(P, 0, sizeof(P));
     }
 
-#this function is -- predicting position with velocity and step...
+#this function is predicting position with velocity and step...
 
     void predict(float ax, float ay, float az) {
         vx += ax * dt;
@@ -35,7 +36,7 @@ struct KalmanFilter {
         y += vy * dt + 0.5 * ay * dt * dt;
         z += vz * dt + 0.5 * az * dt * dt;
 
-
+#our little for loop for the acceleration noise in the covariance matrix
         for (int i = 0; i < 6; i++) {
             P[i][i] += accel_noise;
         }
